@@ -1,0 +1,39 @@
+fieldset {
+    background-color: lightyellow;
+    border: 10px solid yellow; 
+    margin-bottom: 10px;
+    width: 720px;
+}
+
+label {
+    width: 180px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+}
+
+label.auto{
+    width: auto;    
+}
+
+textarea {
+    width: 360px;
+    height: 50px;
+}
+
+label.word {
+    width: 40px;
+    text-align: center;
+    background-color: purple;
+    color: white;
+}
+
+
+label.word2 {
+    width: 40px;
+    text-align: center;
+    background-color: purple;
+    color: white;
+}
+
+label:hover { font-size:40px }
