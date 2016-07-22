@@ -1,0 +1,74 @@
+<!-- Author: Y S -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Poker Face Matching Game</title>
+	<style type="text/css">
+		img,div{position: absolute;}
+		div{width: 500px;height: 500px}
+		#rightSide{left: 500px;border-left: 1px solid black}
+	</style>
+
+
+</head>
+<body onload="generateFaces()">
+	<h1>Matching Game</h1>
+	<p>Click on the extra smiling face on the left.</p>
+	<p id="levels"></p>
+
+	<div id="leftSide"></div>
+
+	<div id="rightSide"></div>
+
+
+		<script type="text/javascript">
+		var numberOfFaces=5;
+		var theLeftSide=document.getElementById("leftSide");
+		var passed=1;
+		function generateFaces(){
+			var count=numberOfFaces;
+			
+			while(count>0){
+				var img=document.createElement("img");
+				img.src="smile.png";
+				img.height = 100;
+				img.width = 100;
+				var topPosition=Math.random()*400;
+				img.style.top=Math.floor(topPosition)+1+"px";
+				var leftPosition=Math.random()*400;
+				img.style.left=Math.floor(leftPosition)+1+"px";
+				theLeftSide.appendChild(img);
+				count-=1;
+			}
+			var lev=document.getElementById("levels");
+			lev.innerHTML="Now you are in "+passed+" levels";
+			var theRightSide = document.getElementById("rightSide");
+			leftSideImages=theLeftSide.cloneNode(true);
+			leftSideImages.removeChild(leftSideImages.lastChild);
+			theRightSide.appendChild(leftSideImages);
+			var theBody =document.getElementsByTagName("body")[0];
+			theLeftSide.lastChild.onclick=function nextLevel(event){
+				event.stopPropagation();
+				while(theLeftSide.firstChild)
+					theLeftSide.removeChild(theLeftSide.firstChild);
+				while(theRightSide.firstChild)
+					theRightSide.removeChild(theRightSide.firstChild);
+				numberOfFaces+=5;
+				passed+=1;
+				generateFaces();
+				
+			};
+			
+			theBody.onclick=function gameOver(){
+				passed-=1;
+				alert("Game Over! \nYou have passed "+passed+" levels!");
+				theBody.onclick=null;
+				theLeftSide.lastChild.onclick=null;
+			};
+			
+		}
+			
+	</script>
+
+</body>
+</html>
